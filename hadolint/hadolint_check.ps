@@ -1,0 +1,12 @@
+# get files in $rootPath
+$files = Get-ChildItem $rootPath -Recurse * | Where {!$_.PSIsContainer}
+
+foreach($file in $files) {
+
+
+	if ($file.Name -match 'Dockerfile' ) {
+			Write-Host "checking file:" $file.FullName
+			hadolint $file.FullName
+	}
+	
+ }
